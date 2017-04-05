@@ -7,7 +7,8 @@ import java.lang.instrument.Instrumentation;
  *
  */
 public class Probe {
-	public static void premain(String[] args,Instrumentation inst) {
+	public static void premain(String args,Instrumentation inst) {
+		System.out.println("enter premain");
 		inst.addTransformer(new ProbeClassTransformer());
 	}
 }
