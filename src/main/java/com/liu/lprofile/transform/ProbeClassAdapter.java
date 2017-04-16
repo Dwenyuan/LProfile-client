@@ -27,7 +27,7 @@ public class ProbeClassAdapter extends ClassAdapter {
 
 	@Override
 	public MethodVisitor visitMethod(int access, String name, String desc, String signature, String[] exceptions) {
-		if ("<clinit>".equals(name)) {
+		if ("<>".equals(name)) {
 			return super.visitMethod(access, name, desc, signature, exceptions);
 		}
 		return new ProbeMethodAdapter(super.visitMethod(access, name, desc, signature, exceptions), className, name);
