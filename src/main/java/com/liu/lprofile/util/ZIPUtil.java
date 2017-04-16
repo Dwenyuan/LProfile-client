@@ -1,5 +1,6 @@
 package com.liu.lprofile.util;
 
+import java.util.Arrays;
 import java.util.zip.Deflater;
 import java.util.zip.Inflater;
 
@@ -16,15 +17,21 @@ public class ZIPUtil {
 
 	public static byte[] encoder(byte[] src) {
 		byte[] result = new byte[2048];
+		int len = 0;
 		try {
 			deflater.setInput(src);
 			deflater.finish();
 			deflater.deflate(result);
+			System.out.println("输入未压缩字节的总数" + deflater.getBytesRead());
+			System.out.println("输出压缩字节的总数" + deflater.getBytesWritten());
+			System.out.println("输入未压缩字节的总数" + deflater.getTotalIn());
+			System.out.println("输出压缩字节的总数" + deflater.getTotalOut());
+			len = deflater.getTotalOut();
 			deflater.reset();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return result;
+		return Arrays.copyOf(result, len);
 	}
 
 	public static byte[] decoder(byte[] src) {
@@ -41,6 +48,7 @@ public class ZIPUtil {
 
 	/**
 	 * 长度用4个byte表示
+	 * 
 	 * @param b
 	 * @return
 	 */
@@ -52,5 +60,5 @@ public class ZIPUtil {
 		return new byte[] { (byte) ((a >> 24) & 0xFF), (byte) ((a >> 16) & 0xFF), (byte) ((a >> 8) & 0xFF),
 				(byte) (a & 0xFF) };
 	}
-	
+
 }

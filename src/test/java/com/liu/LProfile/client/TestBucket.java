@@ -4,6 +4,7 @@ import org.junit.Test;
 
 import com.liu.lprofile.communication.Commit;
 import com.liu.lprofile.entity.MessageBucket;
+import com.liu.lprofile.util.ZIPUtil;
 
 public class TestBucket {
 
@@ -23,6 +24,10 @@ public class TestBucket {
 		thread.setDaemon(false);
 		thread.start();
 		byte[] bytes = "hello world".getBytes();
-		MessageBucket.getInstance().pushMessage(bytes, bytes.length);
+		byte[] encoder = ZIPUtil.encoder(bytes);
+		while(true){
+			Thread.sleep(2000);
+			MessageBucket.getInstance().pushMessage(encoder, encoder.length);
+		}
 	}
 }

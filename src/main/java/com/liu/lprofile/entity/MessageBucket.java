@@ -1,5 +1,6 @@
 package com.liu.lprofile.entity;
 
+import java.util.Arrays;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 
@@ -34,7 +35,7 @@ public class MessageBucket {
 	private byte[] addHead(byte[] src, int start, int length) {
 		byte[] result = new byte[HEAD + length];
 		byte[] array = ZIPUtil.intToByteArray(length);
-		for (int i = 0; i < result.length; i++) {
+		for (int i = 0; i < src.length; i++) {
 			if (i < array.length) {
 				result[i] = array[i];
 			} else {
@@ -48,9 +49,17 @@ public class MessageBucket {
 		return addHead(src, 0, length);
 	}
 
+	/**
+	 * 截取源数据中有效的部分
+	 * @param src
+	 */
+	private byte[] convertMessage(byte[] src,int length) {
+		 return Arrays.copyOf(src, length);
+	}
+	
 	public void pushMessage(byte[] src, int length) throws InterruptedException {
-		byte[] bs = addHead(src, length);
-		blockingQueue.put(bs);
+//		byte[] bs = addHead(src, length);
+		blockingQueue.put(convertMessage(src, length));
 	}
 
 	public byte[] takeMessage() throws InterruptedException {
