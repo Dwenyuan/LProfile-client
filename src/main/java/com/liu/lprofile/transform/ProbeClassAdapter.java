@@ -4,6 +4,7 @@ import org.objectweb.asm.ClassAdapter;
 import org.objectweb.asm.ClassVisitor;
 import org.objectweb.asm.FieldVisitor;
 import org.objectweb.asm.MethodVisitor;
+import org.objectweb.asm.Opcodes;
 
 /**
  * 处理类一级的字节码
@@ -20,17 +21,25 @@ public class ProbeClassAdapter extends ClassAdapter {
 		this.className = className;
 	}
 
-	@Override
+	@Override 
 	public FieldVisitor visitField(int access, String name, String desc, String signature, Object value) {
 		return super.visitField(access, name, desc, signature, value);
 	}
 
 	@Override
 	public MethodVisitor visitMethod(int access, String name, String desc, String signature, String[] exceptions) {
-		if ("<>".equals(name)) {
+		if ("<init>".equals(name) || "<clinit>".equals(name)) {
 			return super.visitMethod(access, name, desc, signature, exceptions);
 		}
 		return new ProbeMethodAdapter(super.visitMethod(access, name, desc, signature, exceptions), className, name);
 	}
+
+	@Override
+	public void visitEnd() {
+		cv.visitField(Opcodes.ACC_PUBLIC + Opcodes.ACC_STATIC, "record_timer", "J", null, null);
+		super.visitEnd();
+	}
+	
+	
 
 }

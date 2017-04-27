@@ -4,13 +4,14 @@ import org.objectweb.asm.MethodAdapter;
 import org.objectweb.asm.MethodVisitor;
 import org.objectweb.asm.Opcodes;
 import com.liu.lprofile.aop.Consuming;
+
 /**
  * 处理方法级的字节码
  * 
  * @author liu
  *
  */
-public class ProbeMethodAdapter extends MethodAdapter implements Opcodes{
+public class ProbeMethodAdapter extends MethodAdapter implements Opcodes {
 
 	private String className = "";
 	private String methodName = "";
@@ -23,26 +24,27 @@ public class ProbeMethodAdapter extends MethodAdapter implements Opcodes{
 
 	@Override
 	public void visitCode() {
-		this.visitMethodInsn(INVOKESTATIC, "com/liu/lprofile/aop/Consuming", "before", "()V");
+		System.out.println(className + "==========");
+		mv.visitMethodInsn(INVOKESTATIC, "java/lang/System", "currentTimeMillis", "()J");
+		mv.visitFieldInsn(PUTSTATIC, className, "record_timer", "J");
+
 		super.visitCode();
 	}
 
 	@Override
 	public void visitInsn(int opcode) {
 		if (opcode >= IRETURN && opcode <= RETURN) {
-			this.visitMethodInsn(INVOKESTATIC, "com/liu/lprofile/aop/Consuming", "after", "()V");
+			mv.visitMethodInsn(INVOKESTATIC, "java/lang/System", "currentTimeMillis", "()J");
+			mv.visitFieldInsn(GETSTATIC, "com/example/DemoApplication", "record_timer", "J");
+			mv.visitInsn(LSUB);
+			mv.visitFieldInsn(PUTSTATIC, "com/example/DemoApplication", "record_timer", "J");
+
+			
+			mv.visitFieldInsn(GETSTATIC, "java/lang/System", "out", "Ljava/io/PrintStream;");
+			mv.visitFieldInsn(GETSTATIC, className, "record_timer", "J");
+			mv.visitMethodInsn(INVOKEVIRTUAL, "java/io/PrintStream", "println", "(J)V");
 		}
 		super.visitInsn(opcode);
-	}
-
-	@Override
-	public void visitMethodInsn(int opcode, String owner, String name, String desc) {
-		super.visitMethodInsn(opcode, owner, name, desc);
-	}
-
-	@Override
-	public void visitLdcInsn(Object cst) {
-		super.visitLdcInsn(cst);
 	}
 
 }

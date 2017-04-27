@@ -18,13 +18,12 @@ public class ProbeClassTransformer implements ClassFileTransformer {
 	public byte[] transform(ClassLoader loader, String className, Class<?> classBeingRedefined,
 			ProtectionDomain protectionDomain, byte[] classfileBuffer) throws IllegalClassFormatException {
 		boolean flag = true;
-		className = className.replace('/', '.');
 		Set<String> set = new HashSet<String>();
-		set.add("javax.");
-		set.add("java.");
-		set.add("sun.");
-		set.add("sun.misc");
-		set.add("com.liu.lprofile");
+		set.add("javax/");
+		set.add("java/");
+		set.add("sun/");
+		set.add("sun/misc/");
+		set.add("com/liu/lprofile");
 		for (String string : set) {
 			flag = className.startsWith(string) ? false : true;
 			if (!flag) {
