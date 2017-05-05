@@ -22,7 +22,9 @@ public class ProbeClassTransformer implements ClassFileTransformer {
 		set.add("javax/");
 		set.add("java/");
 		set.add("sun/");
+		set.add("com/sun/");
 		set.add("sun/misc/");
+		set.add("com/fasterxml/");
 		set.add("com/liu/lprofile");
 		for (String string : set) {
 			flag = className.startsWith(string) ? false : true;

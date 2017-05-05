@@ -3,7 +3,6 @@ package com.liu.lprofile.transform;
 import org.objectweb.asm.MethodAdapter;
 import org.objectweb.asm.MethodVisitor;
 import org.objectweb.asm.Opcodes;
-import com.liu.lprofile.aop.Consuming;
 
 /**
  * 处理方法级的字节码
@@ -43,6 +42,10 @@ public class ProbeMethodAdapter extends MethodAdapter implements Opcodes {
 			mv.visitFieldInsn(GETSTATIC, "java/lang/System", "out", "Ljava/io/PrintStream;");
 			mv.visitFieldInsn(GETSTATIC, className, "record_timer", "J");
 			mv.visitMethodInsn(INVOKEVIRTUAL, "java/io/PrintStream", "println", "(J)V");
+			
+			mv.visitMethodInsn(INVOKESTATIC, "java/lang/Thread", "currentThread", "()Ljava/lang/Thread;");
+			mv.visitMethodInsn(INVOKEVIRTUAL, "java/lang/Thread", "getStackTrace", "()[Ljava/lang/StackTraceElement;");
+			mv.visitMethodInsn(INVOKESTATIC, "com/liu/lprofile/aop/Consuming", "getStracks", "([Ljava/lang/StackTraceElement;)V");
 		}
 		super.visitInsn(opcode);
 	}

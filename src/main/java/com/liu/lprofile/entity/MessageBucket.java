@@ -45,6 +45,7 @@ public class MessageBucket {
 		return result;
 	}
 
+	@SuppressWarnings("unused")
 	private byte[] addHead(byte[] src, int length) {
 		return addHead(src, 0, length);
 	}
