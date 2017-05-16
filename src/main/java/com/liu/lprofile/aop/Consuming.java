@@ -20,13 +20,14 @@ public class Consuming {
 		System.out.println(consuming);
 	}
 
-	public static void getStracks(StackTraceElement[] stackTraceElements) throws JsonProcessingException {
+	public static void getStracks(long time, StackTraceElement[] stackTraceElements) throws JsonProcessingException {
 		System.out.println("================================");
 		ObjectMapper mapper = new ObjectMapper();
 		String stacks = mapper.writeValueAsString(stackTraceElements);
-		System.out.println(stacks);
-//		for (StackTraceElement stackTraceElement : stackTraceElements) {
-//			System.out.println(stackTraceElement.getClassName() + "." + stackTraceElement.getMethodName());
-//		}
+		System.out.println(time + ":" + stacks);
+		// for (StackTraceElement stackTraceElement : stackTraceElements) {
+		// System.out.println(stackTraceElement.getClassName() + "." +
+		// stackTraceElement.getMethodName());
+		// }
 	}
 }
