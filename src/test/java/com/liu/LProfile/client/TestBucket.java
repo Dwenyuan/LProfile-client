@@ -2,9 +2,9 @@ package com.liu.LProfile.client;
 
 import org.junit.Test;
 
-import com.liu.lprofile.communication.Commit;
-import com.liu.lprofile.entity.MessageBucket;
-import com.liu.lprofile.util.ZIPUtil;
+import liu.lprofile.com.communication.Commit;
+import liu.lprofile.com.entity.MessageBucket;
+import liu.lprofile.com.util.ZIPUtil;
 
 public class TestBucket {
 

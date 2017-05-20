@@ -2,11 +2,10 @@ package com.liu.LProfile.client;
 
 import java.io.UnsupportedEncodingException;
 
-import com.liu.lprofile.util.ZIPUtil;
-
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
+import liu.lprofile.com.util.ZIPUtil;
 
 /**
  * Unit test for simple App.

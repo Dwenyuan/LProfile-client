@@ -1,11 +1,11 @@
-package com.liu.lprofile.communication;
+package liu.lprofile.com.communication;
 
 import java.io.IOException;
 import java.io.OutputStream;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
-import com.liu.lprofile.entity.MessageBucket;
+import liu.lprofile.com.entity.MessageBucket;
 
 public class Commit implements Runnable {
 

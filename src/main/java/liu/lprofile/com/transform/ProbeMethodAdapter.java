@@ -1,4 +1,4 @@
-package com.liu.lprofile.transform;
+package liu.lprofile.com.transform;
 
 import java.util.List;
 

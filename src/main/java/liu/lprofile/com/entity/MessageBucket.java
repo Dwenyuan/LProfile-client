@@ -1,10 +1,10 @@
-package com.liu.lprofile.entity;
+package liu.lprofile.com.entity;
 
 import java.util.Arrays;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 
-import com.liu.lprofile.util.ZIPUtil;
+import liu.lprofile.com.util.ZIPUtil;
 
 /**
  * 缓存桶采用单例模式

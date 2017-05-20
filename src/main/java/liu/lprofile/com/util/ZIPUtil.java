@@ -1,4 +1,4 @@
-package com.liu.lprofile.util;
+package liu.lprofile.com.util;
 
 import java.util.Arrays;
 import java.util.zip.Deflater;

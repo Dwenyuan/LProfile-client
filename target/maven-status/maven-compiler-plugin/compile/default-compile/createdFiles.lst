@@ -1,0 +1,8 @@
+com\liu\lprofile\client\ProbeClassTransformer.class
+com\liu\lprofile\util\ZIPUtil.class
+com\liu\lprofile\communication\Commit.class
+com\liu\lprofile\transform\ProbeMethodAdapter.class
+com\liu\lprofile\entity\MessageBucket.class
+com\liu\lprofile\client\Probe.class
+com\liu\lprofile\transform\ProbeClassAdapter.class
+com\liu\lprofile\aop\Consuming.class

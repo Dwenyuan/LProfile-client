@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 import org.junit.Test;
 
-import com.liu.lprofile.util.ZIPUtil;
+import liu.lprofile.com.util.ZIPUtil;
 
 public class TestZipUtil {
 

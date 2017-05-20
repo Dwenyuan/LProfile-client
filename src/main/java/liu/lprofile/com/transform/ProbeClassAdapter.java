@@ -1,4 +1,4 @@
-package com.liu.lprofile.transform;
+package liu.lprofile.com.transform;
 
 import org.objectweb.asm.ClassAdapter;
 import org.objectweb.asm.ClassVisitor;

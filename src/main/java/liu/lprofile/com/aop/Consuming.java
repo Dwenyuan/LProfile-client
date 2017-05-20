@@ -1,6 +1,5 @@
-package com.liu.lprofile.aop;
+package liu.lprofile.com.aop;
 
-import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -25,9 +24,5 @@ public class Consuming {
 		ObjectMapper mapper = new ObjectMapper();
 		String stacks = mapper.writeValueAsString(stackTraceElements);
 		System.out.println(time + ":" + stacks);
-		// for (StackTraceElement stackTraceElement : stackTraceElements) {
-		// System.out.println(stackTraceElement.getClassName() + "." +
-		// stackTraceElement.getMethodName());
-		// }
 	}
 }
