@@ -8,6 +8,7 @@ import liu.lprofile.com.util.ZIPUtil;
 
 /**
  * 缓存桶采用单例模式
+ * 
  * @author liu
  *
  */
@@ -45,25 +46,30 @@ public class MessageBucket {
 		return result;
 	}
 
-	@SuppressWarnings("unused")
 	private byte[] addHead(byte[] src, int length) {
 		return addHead(src, 0, length);
 	}
 
 	/**
 	 * 截取源数据中有效的部分
+	 * 
 	 * @param src
 	 */
-	private byte[] convertMessage(byte[] src,int length) {
-		 return Arrays.copyOf(src, length);
+	private byte[] convertMessage(byte[] src, int length) {
+		return Arrays.copyOf(src, length);
 	}
-	
-	public void pushMessage(byte[] src, int length) throws InterruptedException {
-//		byte[] bs = addHead(src, length);
-		blockingQueue.put(convertMessage(src, length));
+
+	public void pushMessage(byte[] src, int length) {
+		byte[] bs = addHead(src, length);
+		try {
+			blockingQueue.put(src);
+		} catch (InterruptedException e) {
+			// TODO 压入消息失败如何处理
+			e.printStackTrace();
+		}
 	}
 
 	public byte[] takeMessage() throws InterruptedException {
- 		return blockingQueue.take();
+		return blockingQueue.take();
 	}
 }

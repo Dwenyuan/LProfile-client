@@ -76,7 +76,7 @@
 					</descriptorRefs>
 					<archive>
 						<manifestEntries>
-							<Premain-Class>com.liu.lprofile.client.Probe</Premain-Class>
+							<Premain-Class>liu.lprofile.com.client.Probe</Premain-Class>
 						</manifestEntries>
 					</archive>
 				</configuration>

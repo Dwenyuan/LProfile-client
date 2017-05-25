@@ -64,7 +64,7 @@ public class ProbeMethodAdapter extends MethodAdapter implements Opcodes {
 			mv.visitVarInsn(LLOAD, localRecordTimer);
 			mv.visitMethodInsn(INVOKESTATIC, "java/lang/Thread", "currentThread", "()Ljava/lang/Thread;");
 			mv.visitMethodInsn(INVOKEVIRTUAL, "java/lang/Thread", "getStackTrace", "()[Ljava/lang/StackTraceElement;");
-			mv.visitMethodInsn(INVOKESTATIC, "com/liu/lprofile/aop/Consuming", "getStracks",
+			mv.visitMethodInsn(INVOKESTATIC, "liu/lprofile/com/aop/Consuming", "getStracks",
 					"(J[Ljava/lang/StackTraceElement;)V");
 
 		}

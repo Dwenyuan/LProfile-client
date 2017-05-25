@@ -22,10 +22,6 @@ public class ZIPUtil {
 			deflater.setInput(src);
 			deflater.finish();
 			deflater.deflate(result);
-			System.out.println("输入未压缩字节的总数" + deflater.getBytesRead());
-			System.out.println("输出压缩字节的总数" + deflater.getBytesWritten());
-			System.out.println("输入未压缩字节的总数" + deflater.getTotalIn());
-			System.out.println("输出压缩字节的总数" + deflater.getTotalOut());
 			len = deflater.getTotalOut();
 			deflater.reset();
 		} catch (Exception e) {
@@ -56,6 +52,11 @@ public class ZIPUtil {
 		return b[3] & 0xFF | (b[2] & 0xFF) << 8 | (b[1] & 0xFF) << 16 | (b[0] & 0xFF) << 24;
 	}
 
+	/**
+	 * 将整数转换为byte数组表示
+	 * @param a
+	 * @return
+	 */
 	public static byte[] intToByteArray(int a) {
 		return new byte[] { (byte) ((a >> 24) & 0xFF), (byte) ((a >> 16) & 0xFF), (byte) ((a >> 8) & 0xFF),
 				(byte) (a & 0xFF) };
